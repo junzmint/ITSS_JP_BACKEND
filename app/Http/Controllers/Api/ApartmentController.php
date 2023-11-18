@@ -29,7 +29,7 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        //
+        return $apartment->rooms()->with('room_type')->with('room_medias')->get();
     }
 
     /**
