@@ -18,8 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('room_type_id');
             $table->string('additional_info')->nullable();
             $table->timestamps();
+            $table->unsignedBigInteger('apartment_id');
 
             $table->foreign('room_type_id')->references('id')->on('room_types')->onDelete('cascade');
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade');
         });
     }
 
