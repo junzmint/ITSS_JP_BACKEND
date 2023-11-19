@@ -48,5 +48,7 @@ class DatabaseSeeder extends Seeder
                 'url' => 'https://www.thespruce.com/thmb/8UU1FaU16IeUimv4VLjr3mrJIRs=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/MaryPattonDesignlRiverOaksResidencelCreditslMollyCulver-a1d6f86382674828b9e9fa28e4aa47b2.jpg',
             ]);
         }
+
+        \App\Models\Payment::factory(100)->create();
     }
 }
