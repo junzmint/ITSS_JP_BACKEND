@@ -24,4 +24,8 @@ class Room extends Model
     {
         return $this->hasMany(RoomMedia::class);
     }
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
 }
