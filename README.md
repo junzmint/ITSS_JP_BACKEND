@@ -1,11 +1,53 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Set up project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Clone project
+
+```$ git clone https://github.com/junzmint/apartment_kanri_api.git```
+
+## In the root directory of your project create a .env file from the existing .env.example file and modify the following fields in your .env file to use the values specified in the database container
+```$ cp .env.example .env```
+
+```
+DB_CONNECTION=mysql
+DB_HOST=apartment_db
+DB_PORT=3306
+DB_DATABASE=apartment
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+
+## To bring all containers up:
+
+```$ docker-compose up -d```
+
+## To build the images again for the changes to take effect:
+
+```$ docker-compose build && docker-compose up -d```
+
+## To list all running containers:
+
+```$ docker ps```
+
+## To run specific commands in your app container:
+
+```$ docker-compose exec apartment_kanri_api bash```
+
+## When you get in the container bash:
+
+```
+// Download packages
+$ composer install
+// Generate app key
+$ php artisan key:generate
+// Node modules install (If this is a MVC Laravel Project)
+$ npm i
+// Database migration
+$ php artisan migrate
+// Seeder, factory
+$ php artisan db:seed
+// Start your server
+$ php artisan serve
+```
 
 ## About Laravel
 
