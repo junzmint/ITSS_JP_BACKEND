@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ApartmentController;
 use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\TenantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,4 @@ Route::apiResource('apartments', ApartmentController::class);
 
 Route::apiResource('payments', PaymentController::class);
 
+Route::apiResource('tenants', TenantController::class);
