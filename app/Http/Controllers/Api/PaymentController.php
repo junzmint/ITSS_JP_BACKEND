@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -13,7 +15,11 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return Payment::with('room')->get();
+        $payment = DB::table('apartments')
+            ->join('rooms', 'rooms.apartment_id', '=', 'apartments.id')
+            ->join('payments', 'payments.room_id', '=', 'rooms.id')
+            ->get();
+        return $payment;
     }
 
     /**

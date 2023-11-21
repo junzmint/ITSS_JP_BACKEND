@@ -49,7 +49,29 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        \App\Models\Payment::factory(100)->create();
+        \App\Models\Payment::factory(10)->create();
+
+        for ($x = 0; $x <= 10; $x++) {
+            $room_id = \App\Models\Room::inRandomOrder()->first();
+            $deadline = fake()->dateTimeBetween('-3 month', '+3 month');
+            $water = fake()->randomNumber(4, true);
+            $service = fake()->randomNumber(4, true);
+            $rent = fake()->randomNumber(4, true);
+            $electricity = fake()->randomNumber(4, true);
+            $total = $water + $service + $rent + $electricity;
+            $payment_method = fake()->creditCardType();
+
+            \App\Models\Payment::create([
+                'room_id' => $room_id->id,
+                'deadline' => $deadline,
+                'water' => $water,
+                'service' => $service,
+                'rent' => $rent,
+                'total' => $total,
+                'electricity' => $electricity,
+                'payment_method' => $payment_method,
+            ]);
+        }
 
         for ($x = 0; $x <= 49; $x++) {
             $gender = ['Male', 'Other', 'Female'];

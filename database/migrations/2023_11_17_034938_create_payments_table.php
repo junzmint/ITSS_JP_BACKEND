@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('room_id');
             $table->timestamp('deadline');
-            $table->timestamp('pay_at');
+            $table->timestamp('pay_at')->nullable();
             $table->decimal('water');
             $table->decimal('service');
             $table->decimal('rent');

@@ -31,6 +31,6 @@ class Room extends Model
     }
     public function tenants():BelongsToMany
     {
-        return $this->belongsToMany(Tenant::class);
+        return $this->belongsToMany(Tenant::class)->withPivot(['room_host', 'rent_type', 'living_status']);
     }
 }

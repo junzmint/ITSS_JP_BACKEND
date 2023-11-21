@@ -12,6 +12,6 @@ class Tenant extends Model
 
     public function rooms(): BelongsToMany
     {
-        return $this->belongsToMany(Room::class);
+        return $this->belongsToMany(Room::class)->withPivot(['room_host', 'rent_type', 'living_status']);
     }
 }
