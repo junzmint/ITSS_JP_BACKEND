@@ -29,7 +29,7 @@ class RoomController extends Controller
      */
     public function show(string $id)
     {
-        return Room::where('id', $id)->with('room_type')->with('room_medias')->with('apartment')->get();
+        return Room::where('id', $id)->with('room_type')->with('room_medias')->with('apartment')->with('tenants')->get();
     }
 
     /**
