@@ -19,12 +19,12 @@ class RoomFactory extends Factory
     public function definition(): array
     {
         $room_type_id = RoomType::inRandomOrder()->first();
-        $apartment_id = Apartment::inRandomOrder()->first();
+        $apartment_id = Apartment::orderBy('id', 'desc')->first();
         $rent_status = ['Available', 'Rented'];
 
         return [
             'room_number' => fake()->randomNumber(4, true),
-            'rent_status' => $rent_status[array_rand($rent_status,1)],
+            'rent_status' => $rent_status[array_rand($rent_status)],
             'room_type_id' => $room_type_id,
             'additional_info' => fake()->sentence(),
             'apartment_id' => $apartment_id,
