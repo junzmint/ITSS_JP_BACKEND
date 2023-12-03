@@ -34,6 +34,9 @@ $ composer upgrade && composer install
 $ php artisan migrate
 $ php artisan db:seed
 $ php artisan serve
+
+// If you want to migrate database and seed a new dataset, use this command
+$ php artisan migrate:refresh --seed
 ```
 ## To exit a container:
 ```
