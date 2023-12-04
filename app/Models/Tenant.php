@@ -10,6 +10,9 @@ class Tenant extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+    ];
+
     public function rooms(): BelongsToMany
     {
         return $this->belongsToMany(Room::class)->withPivot(['room_host', 'rent_type', 'living_status']);

@@ -29,3 +29,5 @@ Route::apiResource('payments', PaymentController::class);
 Route::apiResource('tenants', TenantController::class);
 
 Route::apiResource('rooms', RoomController::class);
+
+Route::post('rooms/{id}/tenant', [RoomController::class, 'addTentantToRoom'])->name('rooms.addTentantToRoom');
