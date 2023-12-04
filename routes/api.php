@@ -31,3 +31,5 @@ Route::apiResource('tenants', TenantController::class);
 Route::apiResource('rooms', RoomController::class);
 
 Route::post('rooms/{id}/tenant', [RoomController::class, 'addTentantToRoom'])->name('rooms.addTentantToRoom');
+
+Route::delete('rooms/{id}/tenant={tenant_id}', [RoomController::class, 'DeleteTentantInRoom'])->name('rooms.DeleteTentantInRoom');
