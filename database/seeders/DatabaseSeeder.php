@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
                     ]);
                 }
 
-                for ($z = 0; $z < 5; $z++) {
+                for ($z = 0; $z <= 5; $z++) {
                     $user = \App\Models\Tenant::create([
                         'name' => fake()->name(),
                         'phone_number' => fake()->unique()->phoneNumber(),
@@ -93,20 +93,24 @@ class DatabaseSeeder extends Seeder
                     } else {
                         $room_host = false;
                     }
-                    if ($z != 5) {
+                    if ($z < 5) {
+                        $time = fake()->dateTimeBetween('-24 month', '-3 month');
+
                         $user->rooms()->attach($room_id, [
                             'room_host' => $room_host,
                             'rent_type' => $rent_type[array_rand($rent_type)],
                             'living_status' => $bool[array_rand($bool)],
-                            'created_at' => fake()->dateTimeBetween('-24 month', '-3 month'),
+                            'created_at' => $time,
                         ]);
                     } else {
+                        $created_at = fake()->dateTimeBetween('-24 month', '-3 month');
+                        $deleted_at = fake()->dateTimeBetween('+3 month', '+24 month');
                         $user->rooms()->attach($room_id, [
                             'room_host' => $room_host,
                             'rent_type' => $rent_type[array_rand($rent_type)],
                             'living_status' => $bool[array_rand($bool)],
-                            'created_at' => fake()->dateTimeBetween('-24 month', '-3 month'),
-                            'deleted_at' => fake()->dateTimeBetween('+3 month', '+24 month'),
+                            'created_at' => $created_at,
+                            'deleted_at' => $deleted_at,
                         ]);
                     }
                 }
