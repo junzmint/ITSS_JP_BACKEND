@@ -13,7 +13,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        return Apartment::with('apartment_type')->get();
+        return Apartment::with('apartment_type')->with('rooms')->get();
     }
 
     /**
