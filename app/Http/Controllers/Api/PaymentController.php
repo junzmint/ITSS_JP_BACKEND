@@ -27,7 +27,9 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $payment = Payment::create($request->all());
+
+        return $payment;
     }
 
     /**
@@ -35,7 +37,7 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        return Payment::where('id', $payment->id)->with('room')->with('room.apartment')->with('room.tenants')->get();
     }
 
     /**
@@ -43,7 +45,9 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        $payment->update($request->all());
+
+        return $payment;
     }
 
     /**

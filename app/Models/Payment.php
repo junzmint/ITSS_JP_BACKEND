@@ -11,13 +11,11 @@ class Payment extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+    ];
+
     public function room(): BelongsTo
     {
         return $this->belongsTo(Room::class);
-    }
-
-    public function roomApartment(): HasOneThrough
-    {
-        return $this->hasOneThrough(Apartment::class, Room::class);
     }
 }
