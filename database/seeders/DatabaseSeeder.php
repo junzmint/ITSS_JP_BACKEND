@@ -59,15 +59,15 @@ class DatabaseSeeder extends Seeder
                     'url' => $room_media_url[array_rand($room_media_url)],
                 ]);
 
-                $deadline = fake()->dateTimeBetween('-3 month', '+3 month');
-                $water = fake()->randomNumber(4, true);
-                $service = fake()->randomNumber(4, true);
-                $rent = fake()->randomNumber(4, true);
-                $electricity = fake()->randomNumber(4, true);
-                $total = $water + $service + $rent + $electricity;
-                $payment_method = fake()->creditCardType();
-
                 for ($y = 0; $y < 5; $y++) {
+                    $deadline = fake()->dateTimeBetween('-3 month', '+3 month');
+                    $water = fake()->randomNumber(4, true);
+                    $service = fake()->randomNumber(4, true);
+                    $rent = fake()->randomNumber(4, true);
+                    $electricity = fake()->randomNumber(4, true);
+                    $total = $water + $service + $rent + $electricity;
+                    $payment_method = fake()->creditCardType();
+
                     \App\Models\Payment::create([
                         'room_id' => $room_id,
                         'deadline' => $deadline,

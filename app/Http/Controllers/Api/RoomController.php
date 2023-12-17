@@ -93,4 +93,9 @@ class RoomController extends Controller
             ->where('tenant_id', $tenant_id)
             ->update(['deleted_at' => now()]);
     }
+
+    public function showRoomPayment(string $id)
+    {
+        return Room::where('id', $id)->with('payments')->get();
+    }
 }
