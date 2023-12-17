@@ -67,6 +67,13 @@ class TenantController extends Controller
      */
     public function destroy(Tenant $tenant)
     {
-        //
+        DB::
+            table('tenants')
+            ->where('id', $tenant->id)
+            ->update(['deleted_at' => now()]);
+        DB::
+            table('room_tenant')
+            ->where('tenant_id', $tenant->id)
+            ->update(['deleted_at' => now()]);
     }
 }
