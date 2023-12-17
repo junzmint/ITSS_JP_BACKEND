@@ -22,7 +22,24 @@ class TenantController extends Controller
      */
     public function store(Request $request)
     {
-        $tenant = Tenant::create($request->all());
+        $tenant = Tenant::create([
+            'name' => $request->input('name'),
+            'phone_number' => $request->input('phone_number'),
+            'citizen_number' => $request->input('citizen_number'),
+            'gender' => $request->input('gender'),
+            'email' => $request->input('email'),
+        ]);
+
+        if ($request->input('room_ids') != null) {
+            foreach ($request->input('room_ids') as $room) {
+                $tenant->rooms()->attach($room['room_id'], [
+                    'room_host' => $room['room_host'],
+                    'rent_type' => $room['rent_type'],
+                    'living_status' => $room['living_status'],
+                    'created_at' => now(),
+                ]);
+            }
+        }
 
         return $tenant;
     }
