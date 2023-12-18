@@ -78,6 +78,27 @@ class DatabaseSeeder extends Seeder
                         'electricity' => $electricity,
                         'payment_method' => $payment_method,
                     ]);
+
+                    $deadline = fake()->dateTimeBetween('-3 month', '+3 month');
+                    $pay_at = fake()->dateTimeBetween('3 month', '4 month');
+                    $water = fake()->randomNumber(4, true);
+                    $service = fake()->randomNumber(4, true);
+                    $rent = fake()->randomNumber(4, true);
+                    $electricity = fake()->randomNumber(4, true);
+                    $total = $water + $service + $rent + $electricity;
+                    $payment_method = fake()->creditCardType();
+
+                    \App\Models\Payment::create([
+                        'room_id' => $room_id,
+                        'deadline' => $deadline,
+                        'water' => $water,
+                        'service' => $service,
+                        'rent' => $rent,
+                        'total' => $total,
+                        'electricity' => $electricity,
+                        'payment_method' => $payment_method,
+                        'pay_at' => $pay_at,
+                    ]);
                 }
 
                 for ($z = 0; $z <= 5; $z++) {
