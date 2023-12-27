@@ -52,6 +52,17 @@ class RoomController extends Controller
 
     public function addTentantToRoom(Request $request, string $id)
     {
+        $checkAvailalbe = DB::
+            table('room_tenant')
+            ->where('room_id', $id)
+            ->where('deleted_at', null)
+            ->get();
+        if ($checkAvailalbe->count() == 0) {
+            $room = Room::where('id', $id)->first();
+            $room->rent_status = 'Rented';
+            $room->save();
+        }
+
         if (Tenant::where('citizen_number', $request->input('citizen_number'))->first() != null) {
             $tenant = Tenant::where('citizen_number', $request->input('citizen_number'));
 
@@ -92,6 +103,17 @@ class RoomController extends Controller
             ->where('room_id', $id)
             ->where('tenant_id', $tenant_id)
             ->update(['deleted_at' => now()]);
+
+        $checkAvailalbe = DB::
+            table('room_tenant')
+            ->where('room_id', $id)
+            ->where('deleted_at', null)
+            ->get();
+        if ($checkAvailalbe->count() == 0) {
+            $room = Room::where('id', $id)->first();
+            $room->rent_status = 'Available';
+            $room->save();
+        }
     }
 
     public function showRoomPayment(string $id)

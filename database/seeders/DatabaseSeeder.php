@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\RoomMedia;
+use App\Models\RoomType;
+use App\Models\Apartment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -43,9 +45,9 @@ class DatabaseSeeder extends Seeder
         $rent_type = ['Rented', 'Owned'];
 
         for ($x = 0; $x < 5; $x++) {
-            $apartment = \App\Models\Apartment::factory()->create();
+            $apartment = Apartment::factory()->create();
 
-            \App\Models\Room::factory(10)->create();
+            \App\Models\Room::factory(3)->create();
 
             $room_ids = \App\Models\Room::where('apartment_id', $apartment->id)->pluck('id');
 
@@ -101,7 +103,7 @@ class DatabaseSeeder extends Seeder
                     ]);
                 }
 
-                for ($z = 0; $z <= 5; $z++) {
+                for ($z = 0; $z < 5; $z++) {
                     $user = \App\Models\Tenant::create([
                         'name' => fake()->name(),
                         'phone_number' => fake()->unique()->phoneNumber(),
@@ -136,6 +138,17 @@ class DatabaseSeeder extends Seeder
                     }
                 }
             }
+
+            $room_type_id = RoomType::inRandomOrder()->first()->id;
+            $apartment_id = Apartment::orderBy('id', 'desc')->first()->id;
+
+            \App\Models\Room::create([
+                'room_number' => fake()->randomNumber(4, true),
+                'rent_status' => 'Available',
+                'room_type_id' => $room_type_id,
+                'additional_info' => fake()->sentence(),
+                'apartment_id' => $apartment_id,
+            ]);
         }
     }
 }
